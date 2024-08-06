@@ -1,17 +1,16 @@
 
 CC		= nasm
-FLAGS	= -f elf64 -F dwarf
+FLAGS	= -g -f elf64 -F DWARF -w+all
 
 FILE	= main
 SRC		= $(FILE).asm
 OBJ		= $(FILE).o
 BIN		= $(FILE).bin
 
-all:	obj
-		ld -o $(FILE) $(OBJ)
+all:
 
 obj:
-		$(CC) $(FLAGS) $(SRC) -o $(OBJ)
+		as $(SRC) -o $(OBJ)
 
 dis:
 		objdump -D -M intel $(OBJ)
@@ -19,11 +18,7 @@ dis:
 bin:	obj
 		objcopy -O binary --only-section=.text $(OBJ) $(BIN)
 
-run :	obj bin
-		/challange/run < main.bin
-		@rm -rf $(OBJ) $(BIN) $(FILE)
-
 c:
-		@rm -rf $(OBJ) $(BIN) $(FILE)
+		@rm -rf $(OBJ) $(BIN)
 
 .PHONY:	all obj dis bin

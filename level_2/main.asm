@@ -1,7 +1,8 @@
 
-.intel_syntax noprefix
+section .text
 
-.globl _start
-
+global _start
 _start:
-		add rdi, 0x331337
+		mov rax, 0x1227
+		mov r12, 0xCAFED00D1337BEEF
+		mov rsp, 0x31337

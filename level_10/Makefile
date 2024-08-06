@@ -19,8 +19,8 @@ dis:
 bin:	obj
 		objcopy -O binary --only-section=.text $(OBJ) $(BIN)
 
-run :	obj bin
-		/challange/run < main.bin
+run:	obj bin
+		/challenge/run
 		@rm -rf $(OBJ) $(BIN) $(FILE)
 
 c:
